@@ -1,0 +1,20 @@
+export const clients = [
+  { id: "cv1", name: "Client 1", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/cv1.png" },
+  { id: "cv2", name: "Client 2", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/cv2.png" },
+  { id: "cv3", name: "Client 3", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/cv3.png" },
+  { id: "cv4", name: "Client 4", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/cv4.png" },
+  { id: "cv5", name: "Client 5", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/cv5.png" },
+  { id: "cv6", name: "Client 6", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/cv6.png" },
+  { id: "cv7", name: "Client 7", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/cv7.png" },
+  { id: "cv8", name: "Client 8", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/cv8.png" },
+  { id: "cv9", name: "Client 9", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/cv9.png" },
+  { id: "cv10", name: "Client 10", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/cv10.png" },
+  { id: "cv11", name: "Client 11", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/cv11.png" },
+  { id: "cv12", name: "Client 12", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/cv12.png" },
+  { id: "zx16", name: "Client 13", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/zx16.png" },
+  { id: "zx17", name: "Client 14", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/zx17.png" },
+  { id: "zx19", name: "Client 15", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/zx19.png" },
+  { id: "zx20", name: "Client 16", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/zx20.png" },
+  { id: "zx21", name: "Client 17", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/zx21.png" },
+  { id: "zx18", name: "Client 18", logo: "https://srbrandsolutions.in/wp-content/uploads/2025/04/zx18-1.png" }
+];
