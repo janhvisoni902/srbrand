@@ -474,6 +474,27 @@ export default function Services() {
         paddingTop: '6.5rem'
       }}
     >
+      {/* Background Showreel Video overlay for Services section */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          opacity: 0.08,
+          pointerEvents: 'none',
+          zIndex: 0
+        }}
+      >
+        <source src="/videos/showreel.mp4" type="video/mp4" />
+      </video>
+
       {/* Ambient background particles canvas */}
       <canvas
         ref={ambientCanvasRef}

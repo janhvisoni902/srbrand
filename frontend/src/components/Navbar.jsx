@@ -62,20 +62,28 @@ export default function Navbar() {
           transition: 'all 0.3s ease'
         }}
       >
-        {/* Brand logo wordmark */}
+        {/* Official SR Brand Solutions 3D Gold Logo */}
         <Link
           href="/"
+          className="navbar-brand-link"
           style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '1.2rem',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em',
-            textDecoration: 'none',
-            color: 'var(--color-accent-gold, #B08D57)'
+            display: 'inline-flex',
+            alignItems: 'center',
+            textDecoration: 'none'
           }}
         >
-          SR BRAND SOLUTIONS
+          <img
+            src="/images/logo.png"
+            alt="SR Brand Solutions — Brand Re-imagined"
+            style={{
+              height: '54px',
+              width: 'auto',
+              maxHeight: '54px',
+              objectFit: 'contain',
+              display: 'block',
+              transition: 'transform 0.3s ease'
+            }}
+          />
         </Link>
 
         {/* Desktop Nav Menu */}
@@ -290,8 +298,12 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* CSS Rule for Hamburger Visibility */}
+      {/* CSS Rule for Hamburger Visibility & Logo Hover */}
       <style>{`
+        .navbar-brand-link:hover img {
+          transform: scale(1.05);
+          filter: drop-shadow(0 0 12px rgba(212, 165, 55, 0.45));
+        }
         @media (max-width: 992px) {
           .desktop-nav-menu {
             display: none !important;

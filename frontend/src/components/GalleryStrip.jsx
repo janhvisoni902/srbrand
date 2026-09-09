@@ -3,14 +3,14 @@ import { gsap } from '../lib/gsap';
 import { useGSAP } from '@gsap/react';
 
 const galleryItems = [
-  { id: '1', title: 'Immersive Setup', alt: 'Abstract conceptual render of a grand lighting showcase', image: '/images/036OFDcMaXHEPYzMEJwFZPG2hdg.avif', type: 'setup' },
-  { id: '2', title: 'Trade Promotion', alt: 'Warm gold and tan gradient illustrating retail product placement and branding space', image: '/images/Ct4pEaGUq1zhtUEtrAmE2OGl0.avif', type: 'promo' },
-  { id: '3', title: 'Digital Space', alt: 'Soft golden tan and navy composition representing interactive digital campaigns', image: '/images/DP0CVwDg12wX5wH3RGelZcyiN5c.avif', type: 'digital' },
-  { id: '4', title: 'BTL Campaign', alt: 'Dark blue and cream gradient representing direct consumer outreach activations', image: '/images/O64bGMEz7AwzLquXW3LTY8b0U8.jpeg', type: 'btl' },
-  { id: '5', title: 'Flagship Launch - Hero', alt: 'Vibrant golden red abstract space representing the primary brand launch design still', image: '/images/OWNMjV1Wq04bGY5u8YPvOswsFU.avif', type: 'flagship' },
-  { id: '6', title: 'Samsung Activations', alt: 'Burgundy and gold linear shades simulating interactive mobile store environments', image: '/images/mADp9Nqw7OGCIqFPEcpoDygI4.avif', type: 'samsung' },
-  { id: '7', title: 'Goodyear Launch', alt: 'Deep navy background with gold streaks showing outdoor retail brand presence', image: '/images/vVxwGk5sQHKRFRdyu8IPylS6XH0.avif', type: 'goodyear' },
-  { id: '8', title: 'Experiential Stage', alt: 'Sophisticated dark red canvas representing customized premium stages', image: '/images/yUtpLDyrHshawu2mZ9MtsAtM.avif', type: 'setup' },
+  { id: '1', title: 'Immersive Setup', alt: 'Brand experience showcase', image: '/images/frame1.jpg', type: 'setup' },
+  { id: '2', title: 'Trade Promotion', alt: 'Retail product placement and branding space', image: '/images/frame2.jpg', type: 'promo' },
+  { id: '3', title: 'Digital Space', alt: 'Interactive digital campaigns and creative setups', image: '/images/frame3.jpg', type: 'digital' },
+  { id: '4', title: 'BTL Campaign', alt: 'Direct consumer outreach activations', image: '/images/frame4.jpg', type: 'btl' },
+  { id: '5', title: 'Flagship Launch - Hero', alt: 'Primary brand launch and stage spectacle', image: '/images/frame5.jpg', type: 'flagship' },
+  { id: '6', title: 'Samsung Activations', alt: 'Interactive mobile store and exhibition environments', image: '/images/frame6.jpg', type: 'samsung' },
+  { id: '7', title: 'Goodyear Launch', alt: 'Outdoor retail brand presence and stage design', image: '/images/frame7.jpg', type: 'goodyear' },
+  { id: '8', title: 'Experiential Stage', alt: 'Customized premium stages and event decor', image: '/images/frame8.jpg', type: 'setup' },
 ];
 
 export default function GalleryStrip() {

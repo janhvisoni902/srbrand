@@ -130,6 +130,7 @@ export default function ServicesPage() {
 
   const [activeTabId, setActiveTabId] = useState(serviceDetailsData[0].id);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
+  const [showVideoModal, setShowVideoModal] = useState(false);
   const statsSectionRef = useRef(null);
 
   const activeDetail = serviceDetailsData.find(tab => tab.id === activeTabId) || serviceDetailsData[0];
@@ -151,7 +152,7 @@ export default function ServicesPage() {
   return (
     <div className="services-page" style={{ paddingTop: '80px', backgroundColor: '#F7F7F5', color: '#101126' }}>
       
-      {/* 1. Hero Section (Dark Navy #0B1220) */}
+      {/* 1. Hero Section (Dark Navy #0B1220 with Background Showreel Video) */}
       <section
         style={{
           backgroundColor: '#0B1220',
@@ -161,21 +162,36 @@ export default function ServicesPage() {
           padding: '7rem 0 5rem'
         }}
       >
-        {/* Background Event Stage Lighting Image Overlay */}
+        {/* Background Showreel Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            opacity: 0.35,
+            pointerEvents: 'none',
+            zIndex: 0
+          }}
+        >
+          <source src="/videos/showreel.mp4" type="video/mp4" />
+        </video>
         <div
           style={{
             position: 'absolute',
             top: 0,
-            right: 0,
-            width: '55%',
+            left: 0,
+            width: '100%',
             height: '100%',
-            backgroundImage: 'url("https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1400&q=80")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: 0.25,
-            maskImage: 'linear-gradient(to right, transparent 0%, black 50%)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 50%)',
-            pointerEvents: 'none'
+            background: 'linear-gradient(135deg, rgba(11, 18, 32, 0.92) 0%, rgba(11, 18, 32, 0.65) 50%, rgba(11, 18, 32, 0.95) 100%)',
+            pointerEvents: 'none',
+            zIndex: 1
           }}
         />
 
@@ -225,17 +241,19 @@ export default function ServicesPage() {
             </p>
 
             {/* Watch Showreel Button */}
-            <a
-              href="#"
+            <button
               onClick={(e) => {
                 e.preventDefault();
-                alert("Watch Showreel video playing.");
+                setShowVideoModal(true);
               }}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '14px',
-                textDecoration: 'none',
+                background: 'none',
+                border: 'none',
+                padding: 0,
+                cursor: 'pointer',
                 color: '#ffffff',
                 fontWeight: 600,
                 fontSize: '0.95rem',
@@ -266,10 +284,75 @@ export default function ServicesPage() {
                 <Play size={18} fill="#D4A537" style={{ marginLeft: '2px' }} />
               </div>
               <span>Watch Showreel</span>
-            </a>
+            </button>
           </div>
         </div>
       </section>
+
+      {/* Showreel Full Video Modal */}
+      {showVideoModal && (
+        <div
+          onClick={() => setShowVideoModal(false)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.88)',
+            zIndex: 99999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '2rem',
+            boxSizing: 'border-box'
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: 'relative',
+              width: '100%',
+              maxWidth: '960px',
+              backgroundColor: '#000000',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              boxShadow: '0 20px 60px rgba(0,0,0,0.6)'
+            }}
+          >
+            <button
+              onClick={() => setShowVideoModal(false)}
+              style={{
+                position: 'absolute',
+                top: '16px',
+                right: '16px',
+                background: 'rgba(255, 255, 255, 0.2)',
+                border: 'none',
+                color: '#ffffff',
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                cursor: 'pointer',
+                fontSize: '1.2rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 10
+              }}
+            >
+              ✕
+            </button>
+            <video
+              controls
+              autoPlay
+              style={{ width: '100%', display: 'block', maxHeight: '80vh' }}
+            >
+              <source src="/videos/showreel.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      )}
 
       {/* 2. "What We Do" Intro Section (Off-White #F7F7F5) */}
       <section style={{ padding: '5rem 0 2rem', backgroundColor: '#F7F7F5' }}>

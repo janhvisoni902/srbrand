@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { gsap, ScrollTrigger } from '../lib/gsap';
 import { useGSAP } from '@gsap/react';
 import { useRouter } from '../lib/router';
+import WhyUsSection from './WhyUsSection';
 
 export default function About() {
   const [imageError, setImageError] = useState(false);
@@ -738,6 +739,9 @@ export default function About() {
             </a>
           </div>
         </section>
+
+        {/* WHY US SECTION */}
+        <WhyUsSection />
 
         {/* SECTION 6 — CLOSING / VISION */}
         <section className="section-padding container">

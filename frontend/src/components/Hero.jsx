@@ -30,7 +30,6 @@ export default function Hero({ active, completed, onComplete, onSkip, showSkipCo
 
     // If reduced motion is active or intro has been skipped/completed
     if (prefersReducedMotion || completed) {
-      gsap.set(eyebrowRef.current, { opacity: 1, y: 0 });
       gsap.set([line1Ref.current, line2Ref.current, line2PartRef.current], { y: '0%' });
       gsap.set([subheadingRef.current, ctaRef.current, scrollCueRef.current], { opacity: 1 });
       if (tlRef.current) {
@@ -41,7 +40,6 @@ export default function Hero({ active, completed, onComplete, onSkip, showSkipCo
 
     if (!active) {
       // Keep hidden initially (First Paint & during loader overlay phase)
-      gsap.set(eyebrowRef.current, { opacity: 0, y: 20 });
       gsap.set([line1Ref.current, line2Ref.current, line2PartRef.current], { y: '100%' });
       gsap.set([subheadingRef.current, ctaRef.current, scrollCueRef.current], { opacity: 0 });
       return;
@@ -55,22 +53,14 @@ export default function Hero({ active, completed, onComplete, onSkip, showSkipCo
     });
     tlRef.current = tl;
 
-    // 1. Eyebrow fades and shifts up (duration 0.5s)
-    tl.to(eyebrowRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.5,
-      ease: 'power2.out'
-    });
-
-    // 2. Headline line 1 reveals next (slides up from below, starting ~0.2s after eyebrow finishes)
+    // 1. Headline line 1 reveals first (slides up from below)
     tl.to(line1Ref.current, {
       y: '0%',
       duration: 0.8,
       ease: 'power3.out'
-    }, '+=0.2');
+    });
 
-    // 3. Headline line 2 staggered ~0.12s after line 1 starts
+    // 2. Headline line 2 staggered ~0.12s after line 1 starts
     tl.to([line2Ref.current, line2PartRef.current], {
       y: '0%',
       duration: 0.8,
@@ -78,7 +68,7 @@ export default function Hero({ active, completed, onComplete, onSkip, showSkipCo
       ease: 'power3.out'
     }, '>-0.68'); // 0.8s - 0.12s = 0.68s delay
 
-    // 4. Subheading & CTA fades up after headline finishes (~0.3s delay)
+    // 3. Subheading & CTA fades up after headline finishes (~0.3s delay)
     tl.to([subheadingRef.current, ctaRef.current], {
       opacity: 1,
       duration: 0.6,
@@ -86,7 +76,7 @@ export default function Hero({ active, completed, onComplete, onSkip, showSkipCo
       ease: 'power2.out'
     }, '+=0.3');
 
-    // 5. Scroll cue in the bottom right fades in last
+    // 4. Scroll cue in the bottom right fades in last
     tl.to(scrollCueRef.current, {
       opacity: 0.5,
       duration: 0.5,
@@ -130,27 +120,10 @@ export default function Hero({ active, completed, onComplete, onSkip, showSkipCo
           flexDirection: 'column',
           justifyContent: 'center',
           height: '100%',
+          paddingTop: '6.5rem'
         }}
       >
-        <div style={{ maxWidth: '850px', textAlign: 'left' }}>
-          {/* Eyebrow tag: Initial hidden state */}
-          <div
-            ref={eyebrowRef}
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'var(--fs-small)',
-              textTransform: 'uppercase',
-              letterSpacing: '0.15em',
-              color: 'var(--color-accent-burgundy)',
-              fontWeight: 600,
-              marginBottom: '1.5rem',
-              opacity: 0,
-              transform: 'translateY(20px)'
-            }}
-          >
-            3D & Motion Design — Portfolio {new Date().getFullYear()}
-          </div>
-
+        <div style={{ maxWidth: '850px', textAlign: 'left', marginTop: '3.5rem' }}>
           {/* Headline containing masked lines */}
           <h1
             style={{
@@ -167,7 +140,7 @@ export default function Hero({ active, completed, onComplete, onSkip, showSkipCo
                 ref={line1Ref}
                 style={{
                   display: 'inline-block',
-                  transform: 'translateY(100%)'
+                  transform: 'translateY(0%)'
                 }}
               >
                 We Shape
@@ -181,7 +154,7 @@ export default function Hero({ active, completed, onComplete, onSkip, showSkipCo
                   display: 'inline-block',
                   color: 'var(--color-accent-gold)',
                   fontStyle: 'italic',
-                  transform: 'translateY(100%)'
+                  transform: 'translateY(0%)'
                 }}
               >
                 Captivating
@@ -190,7 +163,7 @@ export default function Hero({ active, completed, onComplete, onSkip, showSkipCo
                 ref={line2PartRef}
                 style={{
                   display: 'inline-block',
-                  transform: 'translateY(100%)'
+                  transform: 'translateY(0%)'
                 }}
               >
                 Brands.
@@ -198,13 +171,13 @@ export default function Hero({ active, completed, onComplete, onSkip, showSkipCo
             </div>
           </h1>
 
-          {/* Subheading: Initial hidden state */}
+          {/* Subheading */}
           <p
             ref={subheadingRef}
             style={{
               fontSize: 'var(--fs-body)',
               color: 'var(--color-text)',
-              opacity: 0,
+              opacity: 1,
               maxWidth: '540px',
               marginBottom: '3rem',
               lineHeight: 1.6,
@@ -213,8 +186,8 @@ export default function Hero({ active, completed, onComplete, onSkip, showSkipCo
             SR Brand Solutions crafts high-impact ATL & BTL activation campaigns, large-format corporate launches, and premium brand designs that evoke positive sentiment and drive powerful, measurable return on investment.
           </p>
 
-          {/* CTA: Initial hidden state */}
-          <div ref={ctaRef} style={{ opacity: 0 }}>
+          {/* CTA */}
+          <div ref={ctaRef} style={{ opacity: 1 }}>
             <Link
               href="/services"
               style={{
