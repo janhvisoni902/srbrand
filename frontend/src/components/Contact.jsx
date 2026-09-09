@@ -35,7 +35,8 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+      const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://srbrand.onrender.com';
+      const baseUrl = rawBaseUrl.replace(/\/+$/, '');
       const response = await fetch(`${baseUrl}/api/leads`, {
         method: 'POST',
         headers: {
@@ -44,7 +45,7 @@ export default function Contact() {
         body: JSON.stringify(formData)
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
 
       if (response.ok && data.success) {
         setStatus({
@@ -62,7 +63,7 @@ export default function Contact() {
       } else {
         setStatus({
           type: 'error',
-          message: data.error || 'Failed to submit form. Please try again.'
+          message: data.error || `Submission failed (${response.status}). Please try again.`
         });
       }
     } catch (err) {
