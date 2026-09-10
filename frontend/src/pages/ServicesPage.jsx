@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from '../lib/router';
 import { servicesSummaryData } from '../data/services';
+import { getServices } from '../lib/sanity';
 import { serviceDetailsData } from '../data/service-details';
 import { statsData } from '../data/stats';
 import { faqsData } from '../data/faqs';
@@ -124,8 +125,22 @@ function StatCard({ stat, statsSectionRef }) {
 }
 
 export default function ServicesPage() {
+  const [servicesList, setServicesList] = useState(servicesSummaryData);
+
   useEffect(() => {
-    document.title = "Services | SR Brand Solutions";
+    let isMounted = true;
+    async function loadSanityServices() {
+      try {
+        const sanityData = await getServices();
+        if (isMounted && Array.isArray(sanityData) && sanityData.length > 0) {
+          setServicesList(sanityData);
+        }
+      } catch (err) {
+        console.warn('[Sanity CMS] Could not fetch services from Sanity, using default fallback:', err);
+      }
+    }
+    loadSanityServices();
+    return () => { isMounted = false; };
   }, []);
 
   const [activeTabId, setActiveTabId] = useState(serviceDetailsData[0].id);
@@ -401,7 +416,7 @@ export default function ServicesPage() {
             className="services-icon-grid"
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(5, 1fr)',
+              gridTemplateColumns: servicesList.length > 0 ? `repeat(${Math.min(servicesList.length, 5)}, 1fr)` : 'repeat(5, 1fr)',
               backgroundColor: '#ffffff',
               borderRadius: '20px',
               boxShadow: '0 10px 40px rgba(0,0,0,0.04)',
@@ -409,9 +424,9 @@ export default function ServicesPage() {
               overflow: 'hidden'
             }}
           >
-            {servicesSummaryData.map((service, index) => {
+            {servicesList.map((service, index) => {
               const IconComponent = categoryIconMap[service.icon] || Calendar;
-              const hasBorderRight = index < servicesSummaryData.length - 1;
+              const hasBorderRight = index < servicesList.length - 1;
 
               return (
                 <div
